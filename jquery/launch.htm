@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta http-equiv="Cache-Control" content="no-cache">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="expires" content="-1">
+    <script src="jquery.min.js"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#launch').click(function () {
+                var username = $('#username').val();
+                var password = $('#password').val();
+                var server = $('#server').val();
+                var port = $('#port').val();
+                var profileId = $('#profileId').val();
+                var launchInfoUrl = "http://"+server+":"+port+"/etx/api/v2/sessions/launch/"+profileId;
+                
+                 $.ajax({
+                         type: "POST",
+                         url: launchInfoUrl,
+                         contentType: "application/json; charset=utf-8",
+                         crossDomain: true,
+                         dataType: "json",
+                         headers: {
+                            "Authorization": "Basic " + btoa(username + ":" + password)
+                         },                      
+                         success: function (data, status, jqXHR) {
+                            var launcherUri = data.uriEtxLauncher;
+                            window.location.href = launcherUri;
+                         },
+
+                         error: function (jqXHR, status) {
+                         }
+                      });
+            });
+
+        });
+    </script>
+</head>
+<body>
+<table style="width:100%">
+  <tr>
+    <td>username</td>
+    <td><input type="text" id="username" value="guest"></td> 
+  </tr>
+  <tr>
+    <td>password</td>
+    <td><input type="text" id="password" value=""></td> 
+  </tr>
+  <tr>
+    <td>server</td>
+    <td><input type="text" id="server" value="test01.lab.opentext.com"></td> 
+  </tr>
+  <tr>
+    <td>port</td>
+    <td><input type="text" id="port" value="80"></td> 
+  </tr>  
+  <tr>
+    <td>profile id</td>
+    <td><input type="text" id="profileId" value="9"></td> 
+  </tr>  
+  <tr>
+    <td colspan=2>for cross domain rest api call, please config CORS filter in etxcore/web-inf/web.xml </td>
+  </tr>    
+  <tr>
+    <td></td>
+    <td><input type="button" id="launch" value="launch"></td> 
+  </tr>   
+</table>
+
+</body>
+</html>
