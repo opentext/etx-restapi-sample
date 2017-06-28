@@ -6,35 +6,36 @@
     <meta http-equiv="Cache-Control" content="no-cache">
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="expires" content="-1">
-    <script src="jquery.min.js"></script>
+    <script src="jquery-1.11.1.min.js"></script>
 
     <script type="text/javascript">
         $(document).ready(function () {
             $('#launch').click(function () {
-                var username = $('#username').val();
-                var password = $('#password').val();
-                var server = $('#server').val();
-                var port = $('#port').val();
-                var profileId = $('#profileId').val();
-                var launchInfoUrl = "http://"+server+":"+port+"/etx/api/v2/sessions/launch/"+profileId;
-                
-                 $.ajax({
-                         type: "POST",
-                         url: launchInfoUrl,
-                         contentType: "application/json; charset=utf-8",
-                         crossDomain: true,
-                         dataType: "json",
-                         headers: {
-                            "Authorization": "Basic " + btoa(username + ":" + password)
-                         },                      
-                         success: function (data, status, jqXHR) {
-                            var launcherUri = data.uriEtxLauncher;
-                            window.location.href = launcherUri;
-                         },
+				var username = $('#username').val();
+				var password = $('#password').val();
+				var server = $('#server').val();
+				var port = $('#port').val();
+				var protocol = $('#protocol').val();
+				var profileId = $('#profileId').val();
+				var launchInfoUrl = protocol+"://"+server+":"+port+"/etxcore/v2/sessions/launch/"+profileId;
+				
+				 $.ajax({
+						 type: "POST",
+						 url: launchInfoUrl,
+						 contentType: "application/json; charset=utf-8",
+						 crossDomain: true,
+						 dataType: "json",
+						 headers: {
+							"Authorization": "Basic " + btoa(username + ":" + password)
+						 },						 
+						 success: function (data, status, jqXHR) {
+							var launcherUri = data.uriEtxLauncher;
+							window.location.href = launcherUri;
+						 },
 
-                         error: function (jqXHR, status) {
-                         }
-                      });
+						 error: function (jqXHR, status) {
+						 }
+					  });
             });
 
         });
@@ -44,19 +45,23 @@
 <table style="width:100%">
   <tr>
     <td>username</td>
-    <td><input type="text" id="username" value="guest"></td> 
+    <td><input type="text" id="username" value="qauser"></td> 
   </tr>
   <tr>
     <td>password</td>
-    <td><input type="text" id="password" value=""></td> 
+    <td><input type="text" id="password" value="testing"></td> 
   </tr>
   <tr>
     <td>server</td>
-    <td><input type="text" id="server" value="test01.lab.opentext.com"></td> 
+    <td><input type="text" id="protocol" value="http"></td> 
+  </tr>
+  <tr>
+    <td>server</td>
+    <td><input type="text" id="server" value="wvcentos01.hcl.com"></td> 
   </tr>
   <tr>
     <td>port</td>
-    <td><input type="text" id="port" value="80"></td> 
+    <td><input type="text" id="port" value="8080"></td> 
   </tr>  
   <tr>
     <td>profile id</td>
@@ -70,7 +75,7 @@
     <td colspan=2>
 	<p>for cross domain rest api call, please config CORS filter in etxcore/web-inf/web.xml.</p> 
 	<p>put following xml to etxcore/web-inf/web.xml, and be sure it is first filter</p> 
-	<p>	<xmp>
+	<p>	<xmp style="border:none;">
 	<filter>
 	  <filter-name>CorsFilter</filter-name>
 	  <filter-class>org.apache.catalina.filters.CorsFilter</filter-class>
@@ -95,7 +100,7 @@
 	</p>
 	</td>
   </tr>    
- 
+
 </table>
 
 </body>
