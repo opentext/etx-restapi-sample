@@ -63,12 +63,39 @@
     <td><input type="text" id="profileId" value="9"></td> 
   </tr>  
   <tr>
-    <td colspan=2>for cross domain rest api call, please config CORS filter in etxcore/web-inf/web.xml </td>
-  </tr>    
-  <tr>
     <td></td>
     <td><input type="button" id="launch" value="launch"></td> 
   </tr>   
+  <tr>
+    <td colspan=2>
+	<p>for cross domain rest api call, please config CORS filter in etxcore/web-inf/web.xml.</p> 
+	<p>for put following xml to etxcore/web-inf/web.xml, and be sure it is first filter</p> 
+	<p>	<xmp>
+	<filter>
+	  <filter-name>CorsFilter</filter-name>
+	  <filter-class>org.apache.catalina.filters.CorsFilter</filter-class>
+	  <init-param>
+		<param-name>cors.allowed.origins</param-name>
+		<param-value>*</param-value>
+	  </init-param>
+	  <init-param>
+		<param-name>cors.allowed.methods</param-name>
+		<param-value>GET,POST,HEAD,OPTIONS,PUT,DELETE</param-value>
+	  </init-param>
+	  <init-param>
+		<param-name>cors.allowed.headers</param-name>
+		<param-value>authorization,Content-Type,X-Requested-With,accept,Origin,Access-Control-Request-Method,Access-Control-Request-Headers</param-value>
+	  </init-param>
+	</filter>
+	<filter-mapping>
+	  <filter-name>CorsFilter</filter-name>
+	  <url-pattern>/*</url-pattern>
+	</filter-mapping>
+	</xmp>
+	</p>
+	</td>
+  </tr>    
+ 
 </table>
 
 </body>
