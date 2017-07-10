@@ -1,4 +1,4 @@
-//node assignusertogroup.js user=guest password=mypass server=test01.lab.opentext.com  port=80 userGroupId=2 userId=3
+//node assignusertogroup.js user=username password=password server=etx.mycompany.org  port=80 userGroupId=2 userId=3
 var http = require('http');
 
 if (process.argv.length <= 2) {
