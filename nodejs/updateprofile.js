@@ -1,4 +1,4 @@
-//node updateprofile.js user=guest password=mypass server=test01.lab.opentext.com  port=80 id=18 TargetNode="Single>www.test.com" EnableLog=1 LogFont=0
+//node updateprofile.js user=username password=password server=etx.mycompany.org  port=80 id=18 TargetNode="Single>www.test.com" EnableLog=1 LogFont=0
 var http = require('http');
 
 if (process.argv.length <= 2) {
