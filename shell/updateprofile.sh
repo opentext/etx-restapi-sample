@@ -1,5 +1,5 @@
 #!/bin/bash
-#sample:./updateprofile.sh -u guest -pwd mypass -s test01.lab.opentext.com -p 80 -id 18 -n1 TargetNode -v1 "Single>www.test.com" -n2 EnableLog -v2 0 -n3 LogFont -v3 1
+#sample:./updateprofile.sh -u username -pwd password -s etx.mycompany.org -p 80 -id 18 -n1 TargetNode -v1 "Single>www.test.com" -n2 EnableLog -v2 0 -n3 LogFont -v3 1
 
 port=80
 i=0
