@@ -1,5 +1,5 @@
 #!/bin/bash
-#./launch.sh -u guest -pwd mypass -s test01.lab.opentext.com -p 80 -id 8 
+#./launch.sh -u username -pwd password -s etx.mycompany.org -p 80 -id 8 
 #
 
 port=80
