@@ -1,5 +1,5 @@
 #!/bin/bash
-#./assignusertogroup.sh -u guest -pwd mypass -s test01.lab.opentext.com -p 80 -userGroupId 2 -userId 3
+#./assignusertogroup.sh -u username -pwd password -s etx.mycompany.org -p 80 -userGroupId 2 -userId 3
 
 port=80
 i=0
