@@ -73,7 +73,8 @@
   </tr>   
   <tr>
     <td colspan=2>
-	<p>for cross domain rest api call, please config CORS filter in etxcore/web-inf/web.xml.</p> 
+	<p>ETX Server version 11.5:</p>
+	<p>For cross domain rest api call, please config CORS filter in etxcore/web-inf/web.xml.</p> 
 	<p>put following xml to etxcore/web-inf/web.xml, and be sure it is first filter</p> 
 	<p>	<xmp style="border:none;">
 	<filter>
@@ -100,7 +101,36 @@
 	</p>
 	</td>
   </tr>    
-
+  <tr>
+    <td colspan=2>
+	<p>ETX Server version 12:</p>
+	<p>For cross domain rest api call, please put following xml to data/conf/override-web.xml</p> 
+	<p>	<xmp style="border:none;">
+	<filter>
+	<filter-name>CorsFilter</filter-name>
+	<filter-class>org.eclipse.jetty.servlets.CrossOriginFilter</filter-class>
+	<async-supported>true</async-supported>
+	<init-param>
+	<param-name>allowedOrigins</param-name>
+	<param-value>*</param-value>
+	</init-param>
+	<init-param>
+	<param-name>allowedMethods</param-name>
+	<param-value>GET,POST,HEAD,OPTIONS,PUT,DELETE</param-value>
+	</init-param>
+	<init-param>
+	<param-name>allowedHeaders</param-name>
+	<param-value>authorization,Content-Type,X-Requested-With,accept,Origin,Access-Control-Request-Method,Access-Control-Request-Headers</param-value>
+	</init-param>
+	</filter>
+	<filter-mapping>
+	<filter-name>CorsFilter</filter-name>
+	<url-pattern>/*</url-pattern>
+	</filter-mapping>
+	</xmp>
+	</p>
+	</td>
+  </tr>   
 </table>
 
 </body>
